@@ -65,6 +65,10 @@ TEMPLATES = [
         'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
+            'libraries':  {
+                'blog_extras': 'blog.templatetags.blog_extras',
+            },
+
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
