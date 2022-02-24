@@ -213,6 +213,19 @@ class Dev(Configuration):
             "level": "DEBUG",
         },
     }
+
+    # CACHES = {
+    #   "default": {
+    #       "BACKEND": "django.core.cache.backends.memcached.PyMemcacheCache",
+    #       "LOCATION"": "127.0.0.1:11211",
+    #   }
+    # }
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+            "LOCATION": "my_cache_table",
+        }
+    }
     # Internationalization
     # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -239,3 +252,7 @@ class Dev(Configuration):
     DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
     CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
     CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+class Prod(Dev):
+  DEBUG = False
+  SECRET_KEY = values.SecretValue()
