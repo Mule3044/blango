@@ -7,10 +7,10 @@ from django.utils import timezone
 
 from blango_auth.models import User
 
-User.objects.filter(
-    is_active=False,
-    date_joined__lt=timezone.now() - timedelta(days=settings.ACCOUNT_ACTIVATION_DAYS)
-).delete()
+# User.objects.filter(
+#     is_active=False,
+#     date_joined__lt=timezone.now() - timedelta(days=settings.ACCOUNT_ACTIVATION_DAYS)
+# ).delete()
 
 # Create your views here.
 @login_required
