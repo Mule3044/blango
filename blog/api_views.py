@@ -5,6 +5,9 @@ from django.http import JsonResponse, HttpResponse, HttpResponseNotAllowed
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework import generics
+
+from blog.api.serializers import PostSerializer
 
 from blog.models import Post
 
@@ -24,7 +27,7 @@ def post_to_dict(post):
 
 
 @csrf_exempt
-def post_list(request):
+def post_list(request, format=None):
     if request.method == "GET":
         posts = Post.objects.all()
         posts_as_dict = [post_to_dict(p) for p in posts]
@@ -41,7 +44,7 @@ def post_list(request):
 
 
 @csrf_exempt
-def post_detail(request, pk):
+def post_detail(request, pk, format=None):
     post = get_object_or_404(Post, pk=pk)
 
     if request.method == "GET":
