@@ -74,6 +74,7 @@ class Dev(Configuration):
         'blango_auth',
         'allauth',
         'allauth.account',
+        'rest_framework.authtoken',
         'allauth.socialaccount',
         'allauth.socialaccount.providers.google',
     ]
@@ -128,6 +129,14 @@ class Dev(Configuration):
                 'access_type': 'online',
             }
         }
+    }
+
+    REST_FRAMEWORK = {
+      "DEFAULT_AUTHENTICATION_CLASSES": [
+          "rest_framework.authentication.BasicAuthentication",
+          "rest_framework.authentication.SessionAuthentication",
+          "rest_framework.authentication.TokenAuthentication",
+        ]
     }
     # Database
     # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
