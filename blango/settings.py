@@ -77,6 +77,7 @@ class Dev(Configuration):
         'rest_framework.authtoken',
         'allauth.socialaccount',
         'allauth.socialaccount.providers.google',
+        'drf_yasg',
     ]
     
 
@@ -84,6 +85,7 @@ class Dev(Configuration):
         'debug_toolbar.middleware.DebugToolbarMiddleware',
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.middleware.locale.LocaleMiddleware',
         'django.middleware.common.CommonMiddleware',
         # 'django.middleware.csrf.CsrfViewMiddleware',
         'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -140,6 +142,13 @@ class Dev(Configuration):
       "DEFAULT_PERMISSION_CLASSES": [
           "rest_framework.permissions.IsAuthenticatedOrReadOnly",
     ]
+    }
+
+    SWAGGER_SETTINGS = {
+      "SECURITY_DEFINITIONS": {
+          "Token": {"type": "apiKey", "name": "Authorization", "in": "header"},
+          "Basic": {"type": "basic"},
+      }
     }
     # Database
     # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
